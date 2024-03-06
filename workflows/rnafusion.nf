@@ -87,6 +87,7 @@ include { STRINGTIE_WORKFLOW            }   from '../subworkflows/local/stringti
 include { FUSIONCATCHER_WORKFLOW        }   from '../subworkflows/local/fusioncatcher_workflow'
 include { FUSIONINSPECTOR_WORKFLOW      }   from '../subworkflows/local/fusioninspector_workflow'
 include { FUSIONREPORT_WORKFLOW         }   from '../subworkflows/local/fusionreport_workflow'
+include { SEQTK_SAMPLE                  }   from '../subworkflows/local/seqtk/sample'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -155,8 +156,18 @@ workflow RNAFUSION {
     //
     // MODULE: Run FastQC
     //
+
+
+   ch_cat_fastq.join().map { it[0], it[0]["num_reads"] }.set { downsample_ch }
+
+    SEQTK_SAMPLE (
+        downsample_ch
+    )
+
+    ch_versions = ch_versions.mix(SEQTK_SAMPLE.out.versions)
+
     FASTQC (
-        ch_cat_fastq
+        SEQTK_SAMPLE.out.reads
     )
     ch_versions = ch_versions.mix(FASTQC.out.versions)
 
