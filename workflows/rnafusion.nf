@@ -87,7 +87,7 @@ include { STRINGTIE_WORKFLOW            }   from '../subworkflows/local/stringti
 include { FUSIONCATCHER_WORKFLOW        }   from '../subworkflows/local/fusioncatcher_workflow'
 include { FUSIONINSPECTOR_WORKFLOW      }   from '../subworkflows/local/fusioninspector_workflow'
 include { FUSIONREPORT_WORKFLOW         }   from '../subworkflows/local/fusionreport_workflow'
-include { SEQTK_SAMPLE                  }   from '../subworkflows/local/seqtk/sample'
+include { SEQTK_SAMPLE                  }   from '../modules/local/seqtk/sample'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
