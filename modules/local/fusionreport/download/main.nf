@@ -3,7 +3,7 @@ process FUSIONREPORT_DOWNLOAD {
     label 'process_medium'
 
     conda "bioconda::star=2.7.9a"
-    container "docker.io/clinicalgenomics/fusion-report:2.1.8"
+    container "docker.io/watchmakergenomics/fusion_report:latest"
 
     input:
     val(username)
@@ -16,7 +16,7 @@ process FUSIONREPORT_DOWNLOAD {
     script:
     def args = task.ext.args ?: ''
     """
-    fusion_report download --cosmic_usr "$username" --cosmic_passwd "$passwd" $args ./
+    fusion_report download ./
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -26,9 +26,7 @@ process FUSIONREPORT_DOWNLOAD {
 
     stub:
     """
-    touch cosmic.db
     touch fusiongdb2.db
-    touch fusiongdb.db
     touch mitelman.db
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
