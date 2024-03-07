@@ -157,8 +157,11 @@ workflow RNAFUSION {
     // MODULE: Run FastQC
     //
 
+   ch_cat_fastq.map { [it[0], it[0]["num_reads"]] }.set { num_reads_ch }
 
-   ch_cat_fastq.join().map { it[0], it[0]["num_reads"] }.set { downsample_ch }
+   ch_cat_fastq.join(num_reads_ch).set { downsample_ch }
+
+   downsample_ch.view()
 
     SEQTK_SAMPLE (
         downsample_ch
