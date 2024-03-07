@@ -175,7 +175,7 @@ workflow RNAFUSION {
     ch_versions = ch_versions.mix(FASTQC.out.versions)
 
     TRIM_WORKFLOW (
-        ch_cat_fastq
+        SEQTK_SAMPLE.out.reads
     )
     ch_reads_fusioncatcher = TRIM_WORKFLOW.out.ch_reads_fusioncatcher
     ch_reads_all = TRIM_WORKFLOW.out.ch_reads_all
