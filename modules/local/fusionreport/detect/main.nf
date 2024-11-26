@@ -3,7 +3,7 @@ process FUSIONREPORT {
     label 'process_medium'
 
     conda "bioconda::star=2.7.9a"
-    container "docker.io/watchmakergenomics/fusion_report:latest"
+    container "912684371407.dkr.ecr.us-west-2.amazonaws.com/fusion_report:latest"
 
 
     input:

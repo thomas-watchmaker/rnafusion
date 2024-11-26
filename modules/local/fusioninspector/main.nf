@@ -3,7 +3,7 @@ process FUSIONINSPECTOR {
     label 'process_high'
 
     conda "bioconda::dfam=3.3 bioconda::hmmer=3.3.2 bioconda::star-fusion=1.12.0 bioconda::samtools=1.9 bioconda::star=2.7.8a"
-    container 'docker.io/trinityctat/starfusion:1.12.0'
+    container '912684371407.dkr.ecr.us-west-2.amazonaws.com/fusion-inspector:v2.8.1'
 
     input:
     tuple val(meta), path(reads), path(fusion_list)
